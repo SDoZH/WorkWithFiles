@@ -3,8 +3,7 @@ using System.IO;
 using System.IO.Enumeration;
 
 namespace Task2
-{
-
+{ 
     class Program
     {
         static void Main(string[] args)
