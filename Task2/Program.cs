@@ -23,7 +23,7 @@ namespace Task2
             Console.ReadLine();
         }
 
-        static double sizeFolder(string folder, ref double catalogSize)
+        static double sizeFolder(string folder, ref double catalogSize) //метод для подсчета
         {
             try
             {
@@ -32,13 +32,12 @@ namespace Task2
                 FileInfo[] fi = Fol.GetFiles();
                 foreach (FileInfo f in fi)
                 {
-                    catalogSize = catalogSize + f.Length;
+                    catalogSize = catalogSize + f.Length; //складываем
                 }
                 foreach (DirectoryInfo df in dir)
                 {
-                    sizeFolder(df.FullName, ref catalogSize);
+                    sizeFolder(df.FullName, ref catalogSize); // рекурсивно вызываем метод
                 }
-                //1ГБ = 1024 Байта * 1024 КБайта * 1024 МБайта
                 return Math.Round((double) (catalogSize), 1);
             }
            

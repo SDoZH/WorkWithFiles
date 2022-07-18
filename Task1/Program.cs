@@ -2,7 +2,6 @@
 using System.IO;
 using System.IO.Enumeration;
 
-
 namespace Task1
 {
     class Program
@@ -10,9 +9,7 @@ namespace Task1
         public static void Main()
         {
             DelCatalogs30();
-
         }
-
         static void DelCatalogs30()
         {
             var DelFailDir = new DirectoryInfo("C:/Users/Dzh/Desktop/Папка для 8 модуля");
@@ -32,7 +29,6 @@ namespace Task1
                 foreach (string s in files)   // Выведем их все
                     Console.WriteLine(s);
 
-
                 foreach (FileInfo file in DelFailDir.GetFiles())
                 {
                     try
@@ -46,7 +42,6 @@ namespace Task1
                     {
                         Console.WriteLine("Нет подходящих для удаления файлов ");
                     }
-
                 }
                 foreach (DirectoryInfo dir in DelFailDir.GetDirectories())
                 {
@@ -58,7 +53,6 @@ namespace Task1
                     dir.Delete(true);
 
                 }
-
             }
         }
     }
