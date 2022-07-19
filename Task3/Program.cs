@@ -28,7 +28,7 @@ namespace Task3
                     {
                         var timeSpan = file.LastAccessTime;
                         var timeSpan1 = DateTime.Now;
-                        var timeSpan2 = TimeSpan.FromMinutes(2);
+                        var timeSpan2 = TimeSpan.FromMinutes(30);
                         var duras = timeSpan1 - timeSpan;
                         if (duras >= timeSpan2)
                         { file.Delete(); }
@@ -44,7 +44,7 @@ namespace Task3
                     {
                         var timeSpan = dir.LastAccessTime;
                         var timeSpan1 = DateTime.Now;
-                        var timeSpan2 = TimeSpan.FromMinutes(2);
+                        var timeSpan2 = TimeSpan.FromMinutes(30);
                         var duras = timeSpan1 - timeSpan;
                         if (duras >= timeSpan2)
                         {
