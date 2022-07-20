@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
-using System.Text;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Task4
@@ -10,12 +8,9 @@ namespace Task4
     {
         public static void Main()
         {
-             CreateFolder();
-             СreateFile();
+            CreateFolder();
+            СreateFile();
             FileStream();
-
-
-
         }
         public static void СreateFile()
         {
@@ -58,7 +53,7 @@ namespace Task4
         }
         public static void FileStream()
         {
-           
+
         }
     }
 }
