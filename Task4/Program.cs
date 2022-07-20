@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -25,8 +24,10 @@ namespace Task4
              new Student("Гриша", "Группа1", new DateTime(2007, 5, 29)),
              new Student("Света", "Группа3", new DateTime(2005, 5, 29)),
              new Student("Вова", "Группа2", new DateTime(2007, 5, 30)),
+             new Student("Вася", "Группа3", new DateTime(2007, 5, 30)),
+             new Student("Кирилл", "Группа2", new DateTime(2007, 5, 30)),
+             new Student("Жора", "Группа1", new DateTime(2007, 5, 30)),
              };
-
                 // сериализация
                 using (var fs = new FileStream("C:/Users/Dzh/Desktop/Students.dat", FileMode.OpenOrCreate))
                 {
@@ -51,6 +52,22 @@ namespace Task4
                         if (student.Group == "Группа1")
                             sw.WriteLine($"Name: {student.Name} DateOfBirth: {student.DateOfBirth} ");
                     }
+                    Console.WriteLine("Cписок Группы 1 создан");
+
+                    using StreamWriter sR = new StreamWriter("C:/Users/Dzh/Desktop/Students/Group2.txt");
+                    foreach (Student student in students)
+                    {
+                        if (student.Group == "Группа2")
+                            sR.WriteLine($"Name: {student.Name} DateOfBirth: {student.DateOfBirth} ");
+                    }
+                    Console.WriteLine("Cписок Группы 2 создан");
+                    using StreamWriter sF= new StreamWriter("C:/Users/Dzh/Desktop/Students/Group3.txt");
+                    foreach (Student student in students)
+                    {
+                        if (student.Group == "Группа3")
+                            sF.WriteLine($"Name: {student.Name} DateOfBirth: {student.DateOfBirth} ");
+                    }
+                    Console.WriteLine("Cписок Группы 3 создан");
                 }
             }
             catch (Exception ex)
