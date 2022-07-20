@@ -112,9 +112,8 @@ namespace Task4
                 {
                     foreach (Student student in students)
                     {
-                        sw.WriteLine($"Name: {student.Name}  Group: {student.Group} DateOfBirth: {student.DateOfBirth} ");
+                        sw.Write($"Name: {student.Name}  Group: {student.Group} DateOfBirth: {student.DateOfBirth} ");
                     }
-
                 }
             }
             catch (Exception e)
@@ -123,7 +122,7 @@ namespace Task4
             }
             finally
             {
-                Console.WriteLine("Executing finally block.");
+                Console.WriteLine("Не сработал код");
             }
         }
     }
@@ -140,10 +139,6 @@ namespace Task4
             DateOfBirth = dateOfBirth;
         }
 
-        internal string ToString(string v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 
