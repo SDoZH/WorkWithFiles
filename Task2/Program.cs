@@ -31,7 +31,7 @@ namespace Task2
                 FileInfo[] fi = Fol.GetFiles();
                 foreach (FileInfo f in fi)
                 {
-                    catalogSize = catalogSize + f.Length; //складываем
+                    catalogSize += f.Length; //складываем
                 }
                 foreach (DirectoryInfo df in dir)
                 {

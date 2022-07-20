@@ -69,7 +69,7 @@ namespace Task3
                     FileInfo[] fi = Fol.GetFiles();
                     foreach (FileInfo f in fi)
                     {
-                        catalogSize = catalogSize + f.Length; //складываем
+                        catalogSize += f.Length; //складываем
                     }
                     foreach (DirectoryInfo df in dir)
                     {
@@ -98,7 +98,7 @@ namespace Task3
                     FileInfo[] fi = Fol.GetFiles();
                     foreach (FileInfo f in fi)
                     {
-                        catalogSize2 = catalogSize2 + f.Length; //складываем
+                        catalogSize2 += f.Length; //складываем
                     }
                     foreach (DirectoryInfo df in dir)
                     {

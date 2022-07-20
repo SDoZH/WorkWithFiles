@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Task4
 {
@@ -9,83 +10,36 @@ namespace Task4
     {
         public static void Main()
         {
-            СreateFile();
-            ReadFileToConcole();
-            CreateFolder();
+             CreateFolder();
+             СreateFile();
             FileStream();
+
+
+
         }
         public static void СreateFile()
         {
             try
             {
-                string path = "C:/Users/Dzh/Desktop/Students.dat";
-                ///записываем данные по студентам в файл
-                Student[] students =
-                 {
-             new Student("Коля" , "1","30.03.1990"),
-             new Student("Гриша", "2","22.03.1990"),
-             new Student("Оля"  , "3","19.03.1990"),
-             new Student("Галя" , "1","14.03.1990"),
-             new Student("Вадим", "2","18.03.1990"),
-             new Student("Петя" , "3","10.03.1990"),
-             };
-                using (BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate)))
+                BinaryFormatter formatter = new BinaryFormatter();
+                var student = new Student("Евгений", "Группа1", new DateTime(2007, 5, 29));
+                // сериализация
+                using (var fs = new FileStream("C:/Users/Dzh/Desktop/Students.dat", FileMode.OpenOrCreate))
                 {
-                    // записываем в файл значение каждого свойства объекта
-                    foreach (Student student in students)
-                    {
-                        writer.Write(student.Name);
-                        writer.Write(student.Group);
-                        writer.Write(student.DateOfBirth);
-                    }
-                    Console.WriteLine("Файл был создан");
+                    formatter.Serialize(fs, student);
+                }
+                // десериализация
+                using (var fs = new FileStream("C:/Users/Dzh/Desktop/Students.dat", FileMode.OpenOrCreate))
+                {
+                    var newStudent = (Student)formatter.Deserialize(fs);
+                    using StreamWriter sw = new StreamWriter("C:/Users/Dzh/Desktop/Students/Group1.txt");
+                    sw.WriteLine($"Имя: {newStudent.Name} --- Group: {student.Group} -- Birthday - {newStudent.DateOfBirth}");
+                    Console.WriteLine($"Имя: {newStudent.Name} --- Group: {newStudent.Group} -- Birthday - {newStudent.DateOfBirth}");
                 }
             }
-            catch (DirectoryNotFoundException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Папка не существует. Ошибка: " + ex.Message);
-                return;
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                Console.WriteLine("Нет доступа. Ошибка: " + ex.Message);
-                return;
-            }
-        }
-        public static void ReadFileToConcole()
-        {
-            try
-            {
-                List<Student> students = new List<Student>();
-
-                ///читаем из файла все значения
-                using (BinaryReader reader = new BinaryReader(File.Open("C:/Users/Dzh/Desktop/Students.dat", FileMode.Open)))
-                {
-
-                    while (reader.PeekChar() > -1)
-                    {
-                        string name = reader.ReadString();
-                        string group = reader.ReadString();
-                        string dateOfBirth = reader.ReadString();
-
-                        students.Add(new Student(name, group, dateOfBirth));
-                    }
-                }
-                // выводим содержимое списка people на консоль
-                foreach (Student student in students)
-                {
-                    Console.WriteLine($"Name: {student.Name}  Group: {student.Group} DateOfBirth: {student.DateOfBirth} ");
-                }
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                Console.WriteLine("Папка не существует. Ошибка: " + ex.Message);
-                return;
-            }
-            catch (UnauthorizedAccessException ex)
-            {
-                Console.WriteLine("Нет доступа. Ошибка: " + ex.Message);
-                return;
+                Console.WriteLine(ex);
             }
         }
         public static void CreateFolder()
@@ -104,40 +58,21 @@ namespace Task4
         }
         public static void FileStream()
         {
-            List<Student> students = new List<Student>();
-            try
-            {
-                using (StreamWriter sw = new StreamWriter("C:/Users/Dzh/Desktop/Students/Group1.txt"))
-                {
-                    foreach (Student student in students)
-                    {
-                        sw.Write($"Name: {student.Name}  Group: {student.Group} DateOfBirth: {student.DateOfBirth} ");
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Не сработал код");
-            }
+           
         }
     }
-    [Serializable]
-    public class Student
+}
+[Serializable]
+public class Student
+{
+    public string Name { get; set; }
+    public string Group { get; set; }
+    public DateTime DateOfBirth { get; set; }
+    public Student(string name, string group, DateTime dateOfBirth)
     {
-        public string Name { get; set; }
-        public string Group { get; set; }
-        public string DateOfBirth { get; set; }
-        public Student(string name, string group, string dateOfBirth)
-        {
-            Name = name;
-            Group = group;
-            DateOfBirth = dateOfBirth;
-        }
-
+        Name = name;
+        Group = group;
+        DateOfBirth = dateOfBirth;
     }
 }
 
