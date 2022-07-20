@@ -10,7 +10,6 @@ namespace Task4
         {
             CreateFolder();
             СreateFile();
-            FileStream();
         }
         public static void СreateFile()
         {
@@ -50,10 +49,6 @@ namespace Task4
             {
                 Console.WriteLine(e.Message);
             }
-        }
-        public static void FileStream()
-        {
-
         }
     }
 }
