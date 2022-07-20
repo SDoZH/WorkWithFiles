@@ -36,20 +36,21 @@ namespace Task4
                     }
                     Console.WriteLine("Создан фаил Students.dat и записаны студенты ");
                 }
-              
+
                 // десериализация
                 using (var fs = new FileStream("C:/Users/Dzh/Desktop/Students.dat", FileMode.Open))
                 {
                     foreach (Student student in students)
                     {
-                     formatter.Deserialize(fs);
+                        formatter.Deserialize(fs);
                     }
-                   
+
                     using StreamWriter sw = new StreamWriter("C:/Users/Dzh/Desktop/Students/Group1.txt");
-                    foreach (Student student in students) 
-                    { if(student.Group =="Группа1")
-                        sw.WriteLine($"Name: {student.Name} DateOfBirth: {student.DateOfBirth} "); 
-                    }     
+                    foreach (Student student in students)
+                    {
+                        if (student.Group == "Группа1")
+                            sw.WriteLine($"Name: {student.Name} DateOfBirth: {student.DateOfBirth} ");
+                    }
                 }
             }
             catch (Exception ex)
@@ -72,7 +73,6 @@ namespace Task4
             }
         }
     }
-
     [Serializable]
     public class Student
     {
@@ -85,9 +85,5 @@ namespace Task4
             Group = group;
             DateOfBirth = dateOfBirth;
         }
-    }
-    public class List
-    {
-
     }
 }
