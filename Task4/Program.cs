@@ -104,7 +104,6 @@ namespace Task4
         }
         public static void FileStream()
         {
-
             List<Student> students = new List<Student>();
             try
             {
