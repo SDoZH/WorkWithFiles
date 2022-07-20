@@ -104,13 +104,17 @@ namespace Task4
         }
         public static void FileStream()
         {
+
+            List<Student> students = new List<Student>();
             try
             {
-                List<Student> students = new List<Student>();
-                StreamWriter sw = new StreamWriter("C:/Users/Dzh/Desktop/Students/Group1.txt");
-                foreach (Student student in students)
+                using (StreamWriter sw = new StreamWriter("C:/Users/Dzh/Desktop/Students/Group1.txt"))
                 {
-                    sw.WriteLine($"Name: {student.Name} DateOfBirth: {student.DateOfBirth} ");
+                    foreach (Student student in students)
+                    {
+                        sw.WriteLine($"Name: {student.Name}  Group: {student.Group} DateOfBirth: {student.DateOfBirth} ");
+                    }
+
                 }
             }
             catch (Exception e)
@@ -134,6 +138,11 @@ namespace Task4
             Name = name;
             Group = group;
             DateOfBirth = dateOfBirth;
+        }
+
+        internal string ToString(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
